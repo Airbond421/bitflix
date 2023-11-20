@@ -37,14 +37,12 @@
 	background-repeat: no-repeat;
 
 	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.10);
-
-
 }
+
 .error p {
 	margin: 20px;
 
-	background: #fff
-;
+	background: #fff;
 	font-family: Trebuchet MS, sans-serif;
 	font-size: 20px;
 	font-style: normal;

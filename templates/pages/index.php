@@ -21,7 +21,8 @@ else
 			?>
 			<div class="movie_cards">
 				<div class="background_movie_card">
-					<a class="details_btn_movie_card" href="/detail.php?movieId=<?= $movie['id'] ?>"><p>ПОДРОБНЕЕ</p></a>
+					<a class="details_btn_movie_card" href="/detail.php?movieId=<?= $movie['id'] ?>"><p>ПОДРОБНЕЕ</p>
+					</a>
 				</div>
 				<div class="movie_card">
 					<img src="/img/movie/<?= $movie['id'] ?>.jpg" alt="">
