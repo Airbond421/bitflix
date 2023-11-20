@@ -15,7 +15,7 @@ function getMoviesByGenre(array $movies, string $genre): array
 	return $filteredMovies;
 }
 
-function getMoviesByTitle(array $movies, string $title): array
+function getMoviesByTitle(array $movies, string $title=null): array
 {
 	$filteredMovies = [];
 	$title = trim($title);

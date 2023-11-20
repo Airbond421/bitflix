@@ -10,7 +10,10 @@ require_once __DIR__ . '/../boot.php';
 if (isset($_GET['genreKey']))
 {
 	$genre = $genres[$_GET['genreKey']];
-	$filteredMovies = getMoviesByGenre($movies, $genre);
+	if (isset($genre))
+	{
+		$filteredMovies = getMoviesByGenre($movies, $genre);
+	}
 }
 elseif (isset($_GET['title']))
 {
