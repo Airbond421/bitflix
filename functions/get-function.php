@@ -1,8 +1,13 @@
 <?php
 
-function getMoviesByGenre(array $movies, string $genre): array
+function getMoviesByGenre(array $movies, string $genre = null): array
 {
 	$filteredMovies = [];
+
+	if ($genre===null)
+	{
+		return $filteredMovies;
+	}
 
 	foreach ($movies as $movie)
 	{
