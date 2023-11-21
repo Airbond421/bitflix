@@ -1,16 +1,5 @@
 <?php
 
-function formatArrayToString(array $array): string
-{
-	$string = '';
-	foreach ($array as $value)
-	{
-		$string .= $value . ', ';
-	}
-
-	return substr($string, 0, -2);
-}
-
 function formatTimeToString(int $time): string
 {
 	$hours = intdiv($time, 60);

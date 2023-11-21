@@ -1,7 +1,7 @@
 <?php
 /**
  * @var array $content
- * @var array $genres
+ * @var array $navMenu
  */
 
 ?>
@@ -19,33 +19,22 @@
 S
 <body class="body">
 
-<div class="header">
+<header class="header">
 	<form action="/" method="get" class="search_form">
 		<input type="text" name="title" class="search_text" placeholder="Поиск по каталогу...">
 		<button type="submit" class="search_submit">ИСКАТЬ</button>
 	</form>
 	<a href="/add-movie.php" class="add_movie_btn">ДОБАВИТЬ ФИЛЬМ</a>
-</div>
+</header>
 
-<div class="nav">
-	<img class="nav_logo" src="/img/icons/logo.svg" alt="">
-	<ul class="nav_component">
-		<li><a href="/">ГЛАВНАЯ</a></li>
-		<?php
-		foreach ($genres as $key => $genre)
-		{
-			?>
-			<li><a href="/?genreKey=<?= $key ?>"><?= $genre ?></a></li>
-			<?php
-		}
-		?>
-		<li><a href="/favorite.php">ИЗБРАННОЕ</a></li>
-	</ul>
-</div>
+<nav class="nav">
+	<?php
+	echo view('components/menu', ['navMenu' => $navMenu]) ?>
+</nav>
 
-<div class="content">
+<main class="content">
 	<?= $content ?>
-</div>
+</main>
 
 </body>
 </html>

@@ -55,7 +55,7 @@ else
 					<h2>Режиссер:</h2>
 					<p><?= $movie['director'] ?></p>
 					<h2>В главных ролях:</h2>
-					<p><?= formatArrayToString($movie['cast']) ?></p>
+					<p><?= implode(', ', $movie['cast']) ?></p>
 				</div>
 				<h1>Описание</h1>
 				<p><?= $movie['description'] ?></p>

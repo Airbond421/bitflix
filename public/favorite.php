@@ -4,10 +4,10 @@ require_once __DIR__ . '/../boot.php';
 
 /**
  * @var array $movies
- * @var array $genres
+ * @var array $navMenu
  */
 
 echo view('layout', [
-	'genres' => $genres,
+	'navMenu' => $navMenu,
 	'content' => view('pages/favorite', []),
 ]);

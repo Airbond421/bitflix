@@ -4,13 +4,18 @@ require_once __DIR__ . '/../boot.php';
 
 /**
  * @var array $movies
- * @var array $genres
+ * @var array $navMenu
  */
+
+$filteredMovies = [];
 
 if (isset($_GET['genreKey']))
 {
-	$genre = $genres[$_GET['genreKey']];
-	$filteredMovies = getMoviesByGenre($movies, $genre);
+	if (isset($genres[$_GET['genreKey']]))
+	{
+		$genre = $genres[$_GET['genreKey']];
+		$filteredMovies = getMoviesByGenre($movies, $genre);
+	}
 }
 elseif (isset($_GET['title']))
 {
@@ -22,7 +27,7 @@ else
 }
 
 echo view('layout', [
-	'genres' => $genres,
+	'navMenu' => $navMenu,
 	'content' => view('pages/index', [
 		'movies' => $filteredMovies,
 	]),
