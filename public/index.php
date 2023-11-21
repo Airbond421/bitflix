@@ -26,9 +26,19 @@ else
 	$filteredMovies = $movies;
 }
 
+if (isset($_GET['p']) & is_numeric($_GET['p']))
+{
+	$page = (int)($_GET['p']);
+}
+else
+{
+	$page = 1;
+}
+
 echo view('layout', [
 	'navMenu' => $navMenu,
 	'content' => view('pages/index', [
+		'page' => $page,
 		'movies' => $filteredMovies,
 	]),
 ]);
