@@ -10,3 +10,4 @@ require_once ROOT . '/data/movies.php';
 require_once ROOT . '/data/genres.php';
 require_once ROOT . '/menu.php';
 require_once ROOT . '/config.php';
+require_once ROOT . '/error-massage.php';

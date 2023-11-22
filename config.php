@@ -2,4 +2,4 @@
 
 const PROJECT_NAME = 'Bitflix';
 
-const NUMBER_OF_MOVIES_PER_PAGE = 15;
+const NUMBER_OF_MOVIES_PER_PAGE = 2;

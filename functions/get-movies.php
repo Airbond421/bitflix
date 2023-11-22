@@ -1,13 +1,8 @@
 <?php
 
-function getMoviesByGenre(array $movies, string $genre = null): array
+function getMoviesByGenre(array $movies, string $genre): array
 {
 	$filteredMovies = [];
-
-	if ($genre===null)
-	{
-		return $filteredMovies;
-	}
 
 	foreach ($movies as $movie)
 	{
@@ -39,12 +34,12 @@ function getMoviesByTitle(array $movies, string $title): array
 	return $filteredMovies;
 }
 
-function getMovieById(array $movies, int $movieId): array
+function getMovieById(array $movies, int $movieId)
 {
 	$index = array_search($movieId, array_column($movies, 'id'), true);
 	if ($index === false)
 	{
-		return [];
+		return false;
 	}
 
 	return $movies[$index];

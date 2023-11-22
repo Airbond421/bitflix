@@ -49,3 +49,7 @@
 	font-weight: 400;
 	line-height: normal;
 }
+
+.error p:after {
+	content: ' :C';
+}
