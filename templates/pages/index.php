@@ -1,9 +1,13 @@
 <?php
+
 /**
  * @var array $movies
  * @var int $page
  */
 
+$firstMovieIdOnPage = getFirstMovieIdOnPage($page);
+$lastMovieIdOnPage = getLastMovieIdOnPage($movies, $page);
+$lastPage = ceil(count($movies) / NUMBER_OF_MOVIES_PER_PAGE);
 ?>
 
 <?php
@@ -17,15 +21,8 @@ else
 	?>
 	<div class="main_content">
 		<?php
-		$index = 15 * ($page - 1);
-		$lastPage = ceil(count($movies) / 15);
-		for ($i = $index; $i < $index + 15; $i++)
+		for ($i = $firstMovieIdOnPage; $i < $lastMovieIdOnPage; $i++)
 		{
-
-			if ($i >= count($movies))
-			{
-				break;
-			}
 			echo view('components/movie-card', ['movie' => $movies[$i]]);
 		}
 		?>

@@ -26,7 +26,7 @@ else
 	$filteredMovies = $movies;
 }
 
-if (isset($_GET['p']) & is_numeric($_GET['p']))
+if (isset($_GET['p']) & is_numeric($_GET['p']) & ($_GET['p'] > 0))
 {
 	$page = (int)($_GET['p']);
 }
