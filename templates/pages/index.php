@@ -7,20 +7,19 @@
 
 $firstMovieIdOnPage = getFirstMovieIdOnPage($page);
 $lastMovieIdOnPage = getLastMovieIdOnPage($movies, $page);
-$lastPage = ceil(count($movies) / NUMBER_OF_MOVIES_PER_PAGE);
+$lastPage = (int)ceil(count($movies) / NUMBER_OF_MOVIES_PER_PAGE);
 ?>
 
 <div class="main_content">
 	<?php
-	for ($i = $firstMovieIdOnPage; $i < $lastMovieIdOnPage; $i++)
+	for ($movieIndexOnPage = $firstMovieIdOnPage; $movieIndexOnPage < $lastMovieIdOnPage; $movieIndexOnPage++)
 	{
-		echo view('components/index/movie-card', ['movie' => $movies[$i]]);
+		echo view('components/index/movie-card', ['movie' => $movies[$movieIndexOnPage]]);
 	}
 	?>
 </div>
 <footer>
-	<?php
-	echo view('components/index/page-footer', [
+	<?= view('components/index/page-footer', [
 		'page' => $page,
 		'lastPage' => $lastPage,
 	]) ?>

@@ -1,4 +1,5 @@
 <?php
 
 const PROJECT_NAME = 'Bitflix';
-const NUMBER_OF_MOVIES_PER_PAGE = 3;
+const NUMBER_OF_MOVIES_PER_PAGE = 15;
+const NUMBER_OF_PAGES_IN_THE_FOOTER = 7;

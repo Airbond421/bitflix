@@ -15,7 +15,7 @@ if (isset($_GET['genreKey']))
 	if (isset($genres[$_GET['genreKey']]))
 	{
 		$genre = $genres[$_GET['genreKey']];
-		$filteredMovies = getMoviesByGenre($filteredMovies, $genre);
+		$filteredMovies = filterMoviesByGenre($filteredMovies, $genre);
 	}
 	else
 	{
@@ -25,12 +25,12 @@ if (isset($_GET['genreKey']))
 
 if (isset($_GET['title']))
 {
-	$filteredMovies = getMoviesByTitle($filteredMovies, $_GET['title']);
+	$filteredMovies = searchMoviesByTitle($filteredMovies, $_GET['title']);
 }
 
 if (isset($_GET['p']) && is_numeric($_GET['p']) && ($_GET['p'] > 0))
 {
-	$page = (int)($_GET['p']);
+	$page = (int)$_GET['p'];
 }
 else
 {
@@ -52,7 +52,7 @@ else
 	echo view('layout', [
 		'navMenu' => $navMenu,
 		'content' => view('components/error', [
-			'errorMessage' => $errorMassage['moviesNotFound'],
+			'errorMessage' => getErrorMassage('moviesNotFound'),
 		]),
 	]);
 }

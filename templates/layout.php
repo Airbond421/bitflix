@@ -28,8 +28,7 @@
 </header>
 
 <nav class="nav">
-	<?php
-	echo view('components/menu', ['navMenu' => $navMenu]) ?>
+	<?= view('components/menu', ['navMenu' => $navMenu]) ?>
 </nav>
 
 <main class="content">

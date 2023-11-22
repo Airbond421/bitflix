@@ -10,6 +10,6 @@ require_once __DIR__ . '/../boot.php';
 echo view('layout', [
 	'navMenu' => $navMenu,
 	'content' => view('components/error', [
-		'errorMessage' => $errorMassage['pageIsNotWorking'],
+		'errorMessage' => getErrorMassage('pageIsNotWorking'),
 	]),
 ]);

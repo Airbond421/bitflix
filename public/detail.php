@@ -10,11 +10,12 @@ require_once __DIR__ . '/../boot.php';
 
 $isMovieId = isset($_GET['movieId']) && is_numeric($_GET['movieId']);
 
-if (isset($_GET['movieId']))
+if ($isMovieId)
 {
 	try
 	{
-		$movie = getMovieById($movies, $_GET['movieId']);
+		$movie = getMovieById($movies, (int)$_GET['movieId']);
+
 		echo view('layout', [
 			'navMenu' => $navMenu,
 			'content' => view('pages/detail', [
@@ -27,7 +28,7 @@ if (isset($_GET['movieId']))
 		echo view('layout', [
 			'navMenu' => $navMenu,
 			'content' => view('components/error', [
-				'errorMessage' => $errorMassage[$e->getMessage()],
+				'errorMessage' => getErrorMassage($e->getMessage()),
 			]),
 		]);
 	}

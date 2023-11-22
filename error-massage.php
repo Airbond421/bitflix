@@ -1,7 +1,13 @@
 <?php
 
-$errorMassage = [
-	'movieNotFound' => 'Фильм не найден',
-	'moviesNotFound' => 'Фильмы не найдены',
-	'pageIsNotWorking' => 'Эта страница пока не доступна'
-];
+function getErrorMassage(string $errorKey): string
+{
+	switch ($errorKey) {
+		case 'movieNotFound':
+			return 'Фильм не найден';
+		case 'moviesNotFound':
+			return 'Фильмы не найдены';
+		case 'pageIsNotWorking':
+			return 'Эта страница пока не доступна';
+	}
+};
