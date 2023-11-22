@@ -32,15 +32,3 @@ if (isset($_GET['movieId']))
 		]);
 	}
 }
-
-//
-// }
-// else
-// {
-// 	echo view('layout', [
-// 		'navMenu' => $navMenu,
-// 		'content' => view('components/error', [
-// 			'errorMessage' => $errorMassage['movieNotFound'],
-// 		]),
-// 	]);
-// }
