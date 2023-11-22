@@ -8,25 +8,39 @@ require_once __DIR__ . '/../boot.php';
  * @var array $errorMassage
  */
 
-$isMovieId = isset($_GET['movieId']) && is_numeric($_GET['movieId']) && getMovieById($movies, $_GET['movieId']);
+$isMovieId = isset($_GET['movieId']) && is_numeric($_GET['movieId']);
 
-if ($isMovieId)
+if (isset($_GET['movieId']))
 {
-	$movie = getMovieById($movies, $_GET['movieId']);
+	try
+	{
+		$movie = getMovieById($movies, $_GET['movieId']);
+		echo view('layout', [
+			'navMenu' => $navMenu,
+			'content' => view('pages/detail', [
+				'movie' => $movie,
+			]),
+		]);
+	}
+	catch (ErrorException $e)
+	{
+		echo view('layout', [
+			'navMenu' => $navMenu,
+			'content' => view('components/error', [
+				'errorMessage' => $errorMassage[$e->getMessage()],
+			]),
+		]);
+	}
+}
 
-	echo view('layout', [
-		'navMenu' => $navMenu,
-		'content' => view('pages/detail', [
-			'movie' => $movie,
-		]),
-	]);
-}
-else
-{
-	echo view('layout', [
-		'navMenu' => $navMenu,
-		'content' => view('components/error', [
-			'errorMessage' => $errorMassage['movieNotFound'],
-		]),
-	]);
-}
+//
+// }
+// else
+// {
+// 	echo view('layout', [
+// 		'navMenu' => $navMenu,
+// 		'content' => view('components/error', [
+// 			'errorMessage' => $errorMassage['movieNotFound'],
+// 		]),
+// 	]);
+// }

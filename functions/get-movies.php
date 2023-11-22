@@ -34,12 +34,18 @@ function getMoviesByTitle(array $movies, string $title): array
 	return $filteredMovies;
 }
 
-function getMovieById(array $movies, int $movieId): array|bool
+function getMovieById(array $movies, string $movieId): array
 {
-	$index = array_search($movieId, array_column($movies, 'id'), true);
+	if (!is_numeric($movieId))
+	{
+		throw new ErrorException('movieNotFound');
+	}
+
+	$index = array_search((int)$movieId, array_column($movies, 'id'), true);
+
 	if ($index === false)
 	{
-		return false;
+		throw new ErrorException('movieNotFound');
 	}
 
 	return $movies[$index];
