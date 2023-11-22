@@ -34,7 +34,7 @@ function getMoviesByTitle(array $movies, string $title): array
 	return $filteredMovies;
 }
 
-function getMovieById(array $movies, int $movieId)
+function getMovieById(array $movies, int $movieId): array|bool
 {
 	$index = array_search($movieId, array_column($movies, 'id'), true);
 	if ($index === false)
