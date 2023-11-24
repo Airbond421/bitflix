@@ -72,7 +72,7 @@
 	border-top-right-radius: 20px;
 }
 
-.main_content .movie_name {
+.movie_card .movie_name {
 	width: 330px;
 	margin-top: 19px;
 	margin-left: 20px;
@@ -82,7 +82,7 @@
 	border-bottom: 1px solid #f2f2f2;
 }
 
-.main_content .movie_name h1 {
+.movie_card .movie_name h1 {
 	overflow: hidden;
 	text-overflow: ellipsis;
 
@@ -95,7 +95,7 @@
 	line-height: normal;
 }
 
-.main_content .movie_name h2 {
+.movie_card .movie_name h2 {
 	overflow: hidden;
 	text-overflow: ellipsis;
 
@@ -108,14 +108,14 @@
 	line-height: 25px; /* 178.571% */
 }
 
-.main_content .description {
+.movie_card .description {
 	height: 99px;
 	width: 330px;
 	margin-top: 15px;
 	margin-left: 20px;
 }
 
-.main_content .description p {
+.movie_card .description p {
 	margin: 0;
 	-webkit-line-clamp: 5;
 	display: -webkit-box;
@@ -131,7 +131,7 @@
 	line-height: 20px; /* 142.857% */
 }
 
-.main_content .movie_info {
+.movie_card .movie_info {
 	display: flex;
 	justify-content: space-between;
 	margin-top: 23px;
@@ -139,14 +139,14 @@
 	margin-right: 20px;
 }
 
-.main_content .movie_info img {
+.movie_card .movie_info img {
 	width: 20px;
 	height: 20px;
 	flex-shrink: 0;
 	margin-right: 3px;
 }
 
-.main_content .movie_info_time {
+.movie_card .movie_info_time {
 	display: flex;
 
 	color: #ccc;
@@ -158,7 +158,7 @@
 	line-height: 20px; /* 183.333% */
 }
 
-.main_content .movie_info_genre {
+.movie_card .movie_info_genre {
 	width: 200px;
 
 	white-space: nowrap;
@@ -176,47 +176,7 @@
 	text-transform: uppercase;
 }
 
-footer {
-	display: flex;
-	flex-wrap: nowrap;
-	margin-top: 25px;
-	justify-content: center;
 
-	border-radius: 10px;
-	background: #fff;
 
-	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.10);
-}
 
-footer a {
-	border-radius: 5px;
-}
-
-footer p {
-	display: flex;
-	justify-content: center;
-
-	padding: 10px;
-	width: 40px;
-	border-radius: 5px;
-	background: rgba(255, 255, 255, 0);
-
-	cursor: pointer;
-
-	color: #999;
-	font-family: Trebuchet MS, sans-serif;
-	font-size: 18px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 40px; /* 222.222% */
-}
-
-footer p:hover {
-	background: rgba(67, 176, 237, 0.5);
-}
-
-footer p.active {
-	padding-bottom: 5px;
-	border-bottom: 5px solid rgba(67, 176, 237, 1);
-}
 

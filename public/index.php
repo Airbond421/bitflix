@@ -31,6 +31,10 @@ if (isset($_GET['title']))
 if (isset($_GET['p']) && is_numeric($_GET['p']) && ($_GET['p'] > 0))
 {
 	$page = (int)$_GET['p'];
+	if ($page>getNumberOfPage($movies))
+	{
+		$page = getNumberOfPage($movies);
+	}
 }
 else
 {

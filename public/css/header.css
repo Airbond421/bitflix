@@ -22,6 +22,10 @@
 	height: 41px;
 }
 
+input:focus {
+	outline: none;
+}
+
 .search_text {
 	display: flex;
 

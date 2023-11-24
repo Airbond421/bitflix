@@ -7,7 +7,7 @@
 
 $firstMovieIdOnPage = getFirstMovieIdOnPage($page);
 $lastMovieIdOnPage = getLastMovieIdOnPage($movies, $page);
-$lastPage = (int)ceil(count($movies) / NUMBER_OF_MOVIES_PER_PAGE);
+$numberOfPage = getNumberOfPage($movies);
 ?>
 
 <div class="main_content">
@@ -18,10 +18,10 @@ $lastPage = (int)ceil(count($movies) / NUMBER_OF_MOVIES_PER_PAGE);
 	}
 	?>
 </div>
-<footer>
-	<?= view('components/index/page-footer', [
+<footer class="pagination">
+	<?= view('components/index/pagination', [
 		'page' => $page,
-		'lastPage' => $lastPage,
+		'numberOfPage' => $numberOfPage,
 	]) ?>
 </footer>
 

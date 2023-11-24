@@ -21,7 +21,7 @@
 
 <header class="header">
 	<form action="/" method="get" class="search_form">
-		<input type="text" name="title" class="search_text" placeholder="Поиск по каталогу...">
+		<label><input type="text" name="title" class="search_text" placeholder="Поиск по каталогу..."></label>
 		<button type="submit" class="search_submit">ИСКАТЬ</button>
 	</form>
 	<a href="/add-movie.php" class="add_movie_btn">ДОБАВИТЬ ФИЛЬМ</a>

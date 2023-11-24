@@ -10,4 +10,5 @@ function getErrorMassage(string $errorKey): string
 		case 'pageIsNotWorking':
 			return 'Эта страница пока не доступна';
 	}
+	throw new ErrorException('Not found error massage');
 };
