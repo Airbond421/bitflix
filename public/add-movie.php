@@ -8,7 +8,7 @@ require_once __DIR__ . '/../boot.php';
  */
 
 echo view('layout', [
-	'navMenu' => $navMenu,
+	'navMenu' => getNavMenu(),
 	'content' => view('components/error', [
 		'errorMessage' => getErrorMassage('pageIsNotWorking'),
 	]),

@@ -3,25 +3,25 @@
 /**
  * @var array $movies
  * @var int $page
+ * @var int $countOfMovies
  */
 
-$firstMovieIdOnPage = getFirstMovieIdOnPage($page);
-$lastMovieIdOnPage = getLastMovieIdOnPage($movies, $page);
-$numberOfPage = getNumberOfPage($movies);
+$countOfPage = (int)ceil($countOfMovies / option('NUMBER_OF_MOVIES_PER_PAGE'));
+
 ?>
 
 <div class="main_content">
 	<?php
-	for ($movieIndexOnPage = $firstMovieIdOnPage; $movieIndexOnPage < $lastMovieIdOnPage; $movieIndexOnPage++)
+	foreach ($movies as $movie)
 	{
-		echo view('components/index/movie-card', ['movie' => $movies[$movieIndexOnPage]]);
+		echo view('components/index/movie-card', ['movie' => $movie]);
 	}
 	?>
 </div>
 <footer class="pagination">
 	<?= view('components/index/pagination', [
 		'page' => $page,
-		'numberOfPage' => $numberOfPage,
+		'countOfPage' => $countOfPage,
 	]) ?>
 </footer>
 

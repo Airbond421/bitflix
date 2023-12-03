@@ -2,7 +2,9 @@
 
 function getErrorMassage(string $errorKey): string
 {
-	switch ($errorKey) {
+	switch ($errorKey)
+	{
+		case 'Undefined array key "movieId"':
 		case 'movieNotFound':
 			return 'Фильм не найден';
 		case 'moviesNotFound':
@@ -10,5 +12,5 @@ function getErrorMassage(string $errorKey): string
 		case 'pageIsNotWorking':
 			return 'Эта страница пока не доступна';
 	}
-	throw new ErrorException('Not found error massage');
-};
+	throw new ErrorException($errorKey);
+}

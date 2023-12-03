@@ -1,5 +1,9 @@
 <?php
 
-const PROJECT_NAME = 'Bitflix';
-const NUMBER_OF_MOVIES_PER_PAGE = 15;
-const NUMBER_OF_PAGES_IN_THE_FOOTER = 7;
+return [
+	'PROJECT_NAME' => 'Bitflix',
+	'NUMBER_OF_MOVIES_PER_PAGE' => 15,
+	'NUMBER_OF_PAGES_IN_THE_FOOTER' => 7,
+	'MAX_NUMBER_OF_GENRES_IN_THE_NAV' => 30,
+];
+

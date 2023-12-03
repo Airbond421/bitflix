@@ -2,11 +2,11 @@
 
 /**
  * @var int $page
- * @var int $numberOfPage
+ * @var int $countOfPage
  */
 
 
-$pageNumber = getPageNumbersInFooter($page, $numberOfPage);
+$pageNumber = getPageNumbersInFooter($page, $countOfPage);
 
 if ($page <= 1)
 {
@@ -35,7 +35,7 @@ for ($number = $pageNumber['first']; $number <= $pageNumber['last']; $number++)
 	}
 }
 
-if ($page >= $numberOfPage)
+if ($page >= $countOfPage)
 {
 	?>
 	<p> > </p>
@@ -46,7 +46,7 @@ else
 {
 	?>
 	<a href='/?<?= http_build_query(array_merge($_GET, ['p' => $page + 1])) ?>'><p> > </p></a>
-	<a href='/?<?= http_build_query(array_merge($_GET, ['p' => $numberOfPage])) ?>'><p> >> </p></a>
+	<a href='/?<?= http_build_query(array_merge($_GET, ['p' => $countOfPage])) ?>'><p> >> </p></a>
 	<?php
 }
 

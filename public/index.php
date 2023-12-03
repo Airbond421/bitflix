@@ -3,37 +3,18 @@
 require_once __DIR__ . '/../boot.php';
 
 /**
- * @var array $movies
  * @var array $navMenu
  * @var array $errorMassage
  */
 
-$filteredMovies = $movies;
-
-if (isset($_GET['genreKey']))
-{
-	if (isset($genres[$_GET['genreKey']]))
-	{
-		$genre = $genres[$_GET['genreKey']];
-		$filteredMovies = filterMoviesByGenre($filteredMovies, $genre);
-	}
-	else
-	{
-		$filteredMovies = [];
-	}
-}
-
-if (isset($_GET['title']))
-{
-	$filteredMovies = searchMoviesByTitle($filteredMovies, $_GET['title']);
-}
+$countOfMovies = countMovies($_GET);
 
 if (isset($_GET['p']) && is_numeric($_GET['p']) && ($_GET['p'] > 0))
 {
 	$page = (int)$_GET['p'];
-	if ($page>getNumberOfPage($movies))
+	if ($page > countPages($countOfMovies))
 	{
-		$page = getNumberOfPage($movies);
+		$page = countPages($countOfMovies);
 	}
 }
 else
@@ -41,20 +22,23 @@ else
 	$page = 1;
 }
 
-if ($filteredMovies)
+$movies = getMovies($page, $_GET);
+
+if ($movies)
 {
 	echo view('layout', [
-		'navMenu' => $navMenu,
+		'navMenu' => getNavMenu(),
 		'content' => view('pages/index', [
+			'countOfMovies' => $countOfMovies,
 			'page' => $page,
-			'movies' => $filteredMovies,
+			'movies' => $movies,
 		]),
 	]);
 }
 else
 {
 	echo view('layout', [
-		'navMenu' => $navMenu,
+		'navMenu' => getNavMenu(),
 		'content' => view('components/error', [
 			'errorMessage' => getErrorMassage('moviesNotFound'),
 		]),

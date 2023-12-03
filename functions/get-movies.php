@@ -1,67 +1,132 @@
 <?php
 
-function filterMoviesByGenre(array $movies, string $genre): array
+function getMovies(int $page, array $filter = null): array
 {
-	$filteredMovies = [];
+	$connection = getDbConnection();
 
-	foreach ($movies as $movie)
+	$limit = option('NUMBER_OF_MOVIES_PER_PAGE');
+	$offset = $limit * ($page - 1);
+
+	if (isset($filter['genreKey']))
 	{
-		if (in_array($genre, $movie['genres'], true))
+		$genre = mysqli_real_escape_string($connection, (string)$filter['genreKey']);
+		$sql = "
+		SELECT m.id AS 'id', title, original_title AS 'original-title', description, duration, g.name AS 'genres'
+		FROM (SELECT m.id, title, original_title, description, duration
+		      FROM movie m
+		      INNER JOIN bitflix.movie_genre mg ON m.ID = mg.MOVIE_ID
+		      INNER JOIN bitflix.genre g ON mg.GENRE_ID = g.ID
+		      WHERE CODE ='{$genre}'
+		      LIMIT {$limit} OFFSET {$offset}) AS m
+		INNER JOIN bitflix.movie_genre mg ON m.id = mg.MOVIE_ID
+		INNER JOIN bitflix.genre g ON mg.GENRE_ID = g.ID
+		ORDER BY id;";
+	}
+	elseif (isset($filter['title']))
+	{
+		$title = mysqli_real_escape_string($connection, (string)$filter['title']);
+		$sql = "
+		SELECT m.id AS 'id', title, original_title AS 'original-title', description, duration, g.name AS 'genres'
+		FROM (SELECT id, title, original_title, description, duration
+		      FROM movie
+		      WHERE TITLE LIKE '%{$title}%' OR ORIGINAL_TITLE LIKE '%{$title}%'
+		      LIMIT {$limit} OFFSET {$offset}) AS m
+		INNER JOIN bitflix.movie_genre mg ON m.id = mg.MOVIE_ID
+		INNER JOIN bitflix.genre g ON mg.GENRE_ID = g.ID
+		ORDER BY id;";
+	}
+	else
+	{
+		$sql = "
+		SELECT m.id AS 'id', title, original_title AS 'original-title', description, duration, g.name AS 'genres'
+		FROM (SELECT id, title, original_title, description, duration
+		      FROM movie m
+		      LIMIT {$limit} OFFSET {$offset}) AS m
+		INNER JOIN bitflix.movie_genre mg ON m.id = mg.MOVIE_ID
+		INNER JOIN bitflix.genre g ON mg.GENRE_ID = g.ID
+		ORDER BY id;";
+	}
+
+	$result = mysqli_query($connection, $sql);
+
+	if (!$result)
+	{
+		throw new Exception(mysqli_error($connection));
+	}
+
+	$movies = [];
+
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		$row['genres'] = (array)$row['genres'];
+
+		if (!$movies)
 		{
-			$filteredMovies[] = $movie;
+			$movies[] = $row;
+			continue;
+		}
+
+		if (in_array($row['id'], array_column($movies, 'id'), true))
+		{
+			$index = array_search($row['id'], array_column($movies, 'id'), true);
+			$movies[$index]['genres'] = array_merge($movies[$index]['genres'], $row['genres']);
+		}
+		else
+		{
+			$movies[] = $row;
 		}
 	}
 
-	return $filteredMovies;
+	return $movies;
 }
 
-function searchMoviesByTitle(array $movies, string $title): array
+function getMovieById(int $movieId): array
 {
-	$filteredMovies = [];
-	$title = trim($title);
-	foreach ($movies as $movie)
+	$connection = getDbConnection();
+
+	$sql = "
+		SELECT movie.id as id, title, original_title as 'original-title', description, duration,
+		g.name as 'genres', a.NAME as 'cast', d.NAME as 'director',
+		age_restriction as 'age-restriction', release_date as 'release-date', rating
+		FROM movie
+			INNER JOIN bitflix.movie_genre mg ON movie.ID = mg.MOVIE_ID
+			INNER JOIN bitflix.genre g ON mg.GENRE_ID = g.ID
+			INNER JOIN bitflix.movie_actor ma ON movie.ID = ma.MOVIE_ID
+			INNER JOIN bitflix.actor a ON ma.ACTOR_ID = a.ID
+			INNER JOIN bitflix.director d ON movie.DIRECTOR_ID = d.ID
+		WHERE movie.id = {$movieId};"
+	;
+
+	$result = mysqli_query($connection, $sql);
+	if (!$result)
 	{
-		if (is_int(mb_strripos($movie['title'], $title)))
+		throw new Exception(mysqli_error($connection));
+	}
+
+	$movie = [];
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		if (!$movie)
 		{
-			$filteredMovies[] = $movie;
+			$movie = $row;
+			$movie['genres'] = (array)$movie['genres'];
+			$movie['cast'] = (array)$movie['cast'];
+			continue;
 		}
-		elseif (is_int(mb_strripos($movie['original-title'], $title)))
+		if (!in_array($row['genres'], $movie['genres'], true))
 		{
-			$filteredMovies[] = $movie;
+			$movie['genres'][] = $row['genres'];
+		}
+		if (!in_array($row['cast'], $movie['cast'], true))
+		{
+			$movie['cast'][] = $row['cast'];
 		}
 	}
 
-	return $filteredMovies;
-}
-
-function getMovieById(array $movies, int $movieId): array
-{
-	$index = array_search((int)$movieId, array_column($movies, 'id'), true);
-
-	if ($index === false)
+	if (!$movie)
 	{
 		throw new ErrorException('movieNotFound');
 	}
 
-	return $movies[$index];
-}
-
-function getFirstMovieIdOnPage(int $page): int
-{
-	return NUMBER_OF_MOVIES_PER_PAGE * ($page - 1);
-}
-
-function getLastMovieIdOnPage(array $movies, int $page): int
-{
-	$firstMovieIdOnPage = getFirstMovieIdOnPage($page);
-	if ($firstMovieIdOnPage + NUMBER_OF_MOVIES_PER_PAGE > count($movies))
-	{
-		$lastMovieIdOnPage = count($movies);
-	}
-	else
-	{
-		$lastMovieIdOnPage = $firstMovieIdOnPage + NUMBER_OF_MOVIES_PER_PAGE;
-	}
-
-	return $lastMovieIdOnPage;
+	return $movie;
 }
