@@ -48,7 +48,7 @@
 				<h2>Режиссер:</h2>
 				<p><?= $movie['director'] ?></p>
 				<h2>В главных ролях:</h2>
-				<p><?= implode(', ', $movie['cast']) ?></p>
+				<p><?= implode(', ', (array)$movie['cast']) ?></p>
 			</div>
 			<h1>Описание</h1>
 			<p><?= $movie['description'] ?></p>

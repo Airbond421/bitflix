@@ -5,3 +5,4 @@ require_once ROOT . '/functions/get-movies.php';
 require_once ROOT . '/functions/get-genres.php';
 require_once ROOT . '/functions/pagination.php';
 require_once ROOT . '/functions/menu.php';
+require_once ROOT . '/functions/data-mapping.php';

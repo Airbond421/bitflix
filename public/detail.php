@@ -10,7 +10,7 @@ require_once __DIR__ . '/../boot.php';
 
 try
 {
-	$movie = getMovieById((int)$_GET['movieId']);
+	$movie = getFullInfoAboutMovieById((int)$_GET['movieId']);
 
 	echo view('layout', [
 		'navMenu' => getNavMenu(),

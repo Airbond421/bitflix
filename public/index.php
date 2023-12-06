@@ -22,7 +22,18 @@ else
 	$page = 1;
 }
 
-$movies = getMovies($page, $_GET);
+$filter = [];
+if (isset($_GET['title']))
+{
+	$filter['title'] = $_GET['title'];
+}
+if (isset($_GET['genreKey']))
+{
+	$filter['genreKey'] = $_GET['genreKey'];
+}
+
+
+$movies = getMoviesByFilter($page, $filter);
 
 if ($movies)
 {

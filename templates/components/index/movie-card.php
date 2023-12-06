@@ -23,7 +23,7 @@
 				<p><?= formatTimeToString($movie['duration']) ?></p>
 			</div>
 			<p class="movie_info_genre">
-				<?= implode(', ', $movie['genres']) ?>
+				<?= implode(', ', (array)$movie['genres']) ?>
 			</p>
 		</div>
 	</div>
