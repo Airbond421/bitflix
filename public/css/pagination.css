@@ -1,0 +1,43 @@
+.pagination {
+	display: flex;
+	flex-wrap: nowrap;
+	margin-top: 25px;
+	justify-content: center;
+
+	border-radius: 10px;
+	background: #fff;
+
+	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.10);
+}
+
+.pagination a {
+	border-radius: 5px;
+}
+
+.pagination p {
+	display: flex;
+	justify-content: center;
+
+	padding: 10px;
+	width: 40px;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0);
+
+	cursor: pointer;
+
+	color: #999;
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px; /* 222.222% */
+}
+
+.pagination p:hover {
+	background: rgba(67, 176, 237, 0.5);
+}
+
+.pagination p.active {
+	padding-bottom: 5px;
+	border-bottom: 5px solid rgba(67, 176, 237, 1);
+}

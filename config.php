@@ -1,0 +1,9 @@
+<?php
+
+return [
+	'PROJECT_NAME' => 'Bitflix',
+	'NUMBER_OF_MOVIES_PER_PAGE' => 2,
+	'NUMBER_OF_PAGES_IN_THE_FOOTER' => 7,
+	'MAX_NUMBER_OF_GENRES_IN_THE_NAV' => 30,
+];
+

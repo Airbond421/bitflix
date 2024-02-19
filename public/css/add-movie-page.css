@@ -1,0 +1,65 @@
+.add_movie {
+	display: block;
+
+	background: #fff;
+
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+
+	padding: 40px;
+}
+
+.field {
+	display: flex;
+	margin: 15px;
+}
+
+
+.add_movie label {
+	width: 200px;
+	padding: 6px 10px 0 0;
+	line-height: 16px;
+	float: left;
+	text-align: right;
+}
+
+.add_movie input {
+	width: 100%;
+	padding: 5px 10px 5px;
+	line-height: 16px;
+	float: right;
+}
+
+.add_movie button
+{
+	margin-left: 15px;
+	padding-left: 21px;
+	padding-right: 21px;
+
+	background-color: #e7a04e;
+	border: none;
+	border-radius: 7px;
+
+	cursor: pointer;
+
+	color: #fff;
+
+	text-align: center;
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 40px; /* 333.333% */
+
+	transition: all 0.3s;
+}
+
+.add_movie button:hover {
+	opacity: 0.7;
+}
+
+.add_movie_button {
+	display: flex;
+	justify-content: center;
+
+	margin-top: 35px;
+}
